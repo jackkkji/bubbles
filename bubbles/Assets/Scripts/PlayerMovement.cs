@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D body;
+    [SerializeField]private Rigidbody2D body;
+    public float speed;
 
     private void Awake()
     {
@@ -11,7 +12,19 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void Update()
     {
+        body.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.linearVelocity.y);
         
+        if (Input.GetKey(KeyCode.Space))
+        {
+            body.linearVelocity = new Vector2(body.linearVelocity.x, speed);
+        }
+        
+
+        
+    
+    
     }
+
+
 
 }
