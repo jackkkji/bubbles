@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e758c8bc001c88f45abe03cc4e6c1ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 602854934}
+  player: {fileID: 1142215631}
   offset: {x: 0, y: 0, z: 0}
 --- !u!1 &602854930
 GameObject:
@@ -591,8 +591,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 2
+  m_UseAutoMass: 0
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -616,8 +616,8 @@ BoxCollider2D:
   m_GameObject: {fileID: 1142215629}
   m_Enabled: 1
   serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
+  m_Density: 5
+  m_Material: {fileID: 6200000, guid: 54bb5ce358fadf04f926dae74f20a36c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -668,7 +668,7 @@ MonoBehaviour:
   body: {fileID: 1142215632}
   circleRigidbody: {fileID: 1457565214}
   speed: 5
-  pushForce: 10
+  pushForce: 0
 --- !u!1 &1457565211
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,7 +768,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4d631d8c4ea23b3498af0d4d126fb236, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
