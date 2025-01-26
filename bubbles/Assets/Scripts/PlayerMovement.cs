@@ -26,20 +26,22 @@ public class PlayerMovement : MonoBehaviour
     {
         // 获取玩家输入
         float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical"); // 获取垂直方向的输入（W 键为正）
 
         // 如果有体力，允许玩家移动
-        if (stamina > 0 && Mathf.Abs(horizontalInput) > 0)
+        if (stamina > 0 && (Mathf.Abs(horizontalInput) > 0 || Mathf.Abs(verticalInput) > 0))
         {
-            // 水平移动主角
-            playerRigidbody.linearVelocity = new Vector2(horizontalInput * moveSpeed, playerRigidbody.linearVelocity.y);
+            // 移动主角
+            Vector2 movement = new Vector2(horizontalInput, verticalInput).normalized * moveSpeed;
+            playerRigidbody.linearVelocity = new Vector2(movement.x, movement.y);
 
             // 消耗体力
             DrainStamina(Time.deltaTime * staminaDrainRate);
         }
         else
         {
-            // 停止主角水平移动
-            playerRigidbody.linearVelocity = new Vector2(0, playerRigidbody.linearVelocity.y);
+            // 停止主角移动
+            playerRigidbody.linearVelocity = Vector2.zero;
         }
 
         // 限制主角的活动范围（相对于仓鼠球中心）
@@ -54,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         PushCircle(horizontalInput);
 
         // 体力恢复（当玩家不按键时）
-        if (Mathf.Abs(horizontalInput) < 0.1f)
+        if (Mathf.Abs(horizontalInput) < 0.1f && Mathf.Abs(verticalInput) < 0.1f)
         {
             RecoverStamina(Time.deltaTime * staminaRecoveryRate);
         }
