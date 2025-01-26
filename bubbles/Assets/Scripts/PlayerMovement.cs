@@ -6,9 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D body;
-    [SerializeField] private Rigidbody2D circleRigidbody;
     public float speed;
-    public float pushForce = 10f;
 
     private void Awake()
     {
