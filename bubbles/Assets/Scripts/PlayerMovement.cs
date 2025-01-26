@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI; // 引入UI命名空间
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float slowRecoveryRate = 10f; // 前3秒每秒恢复体力
     [SerializeField] private float fastRecoveryRate = 45f; // 后2秒每秒恢复体力
 
+    [SerializeField] private Slider staminaSlider; // 引用Slider UI
+
     private Rigidbody2D playerRigidbody;
     private float recoveryTimer = 0f; // 恢复计时器
 
@@ -22,6 +25,13 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         stamina = maxStamina; // 初始化体力值
+
+        // 初始化 Slider 的最大值
+        if (staminaSlider != null)
+        {
+            staminaSlider.maxValue = maxStamina;
+            staminaSlider.value = stamina;
+        }
     }
 
     private void Update()
@@ -62,6 +72,9 @@ public class PlayerMovement : MonoBehaviour
 
         // 推动仓鼠球
         PushCircle(horizontalInput);
+
+        // 更新 Slider 显示
+        UpdateStaminaUI();
     }
 
     private void PushCircle(float horizontalInput)
@@ -103,6 +116,15 @@ public class PlayerMovement : MonoBehaviour
         if (stamina != oldStamina)
         {
             Debug.Log($"Stamina Recovered: {stamina}");
+        }
+    }
+
+    private void UpdateStaminaUI()
+    {
+        // 更新 Slider 的值
+        if (staminaSlider != null)
+        {
+            staminaSlider.value = stamina;
         }
     }
 }
