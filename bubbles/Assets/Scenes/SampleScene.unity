@@ -666,9 +666,8 @@ GameObject:
   - component: {fileID: 86613423}
   - component: {fileID: 86613422}
   - component: {fileID: 86613421}
-  - component: {fileID: 86613424}
   m_Layer: 6
-  m_Name: Flag
+  m_Name: Ground (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -790,18 +789,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.164}
---- !u!114 &86613424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 86613420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a632e392754ab2418e161d62b18c45e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &114915858
 GameObject:
   m_ObjectHideFlags: 0
@@ -5574,10 +5561,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleTransform: {fileID: 1457565216}
   circleRigidbody: {fileID: 1457565214}
-  moveSpeed: 30
+  moveSpeed: 5
   ballPushForce: 10
   maxDistanceFromCenter: 1.5
-  maxStamina: 1000
+  maxStamina: 45
   stamina: 0
   staminaDrainRate: 5
   slowRecoveryRate: 0.1
