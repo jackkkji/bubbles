@@ -12,9 +12,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxStamina = 100f;     // 最大体力值
     [SerializeField] private float stamina;              // 当前体力值
     [SerializeField] private float staminaDrainRate = 5f; // 每秒体力消耗速率
-    [SerializeField] private float staminaRecoveryRate = 3f; // 每秒体力恢复速率
+    [SerializeField] private float slowRecoveryRate = 10f; // 前3秒每秒恢复体力
+    [SerializeField] private float fastRecoveryRate = 45f; // 后2秒每秒恢复体力
 
     private Rigidbody2D playerRigidbody;
+    private float recoveryTimer = 0f; // 恢复计时器
 
     private void Awake()
     {
@@ -26,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // 获取玩家输入
         float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical"); // 获取垂直方向的输入（W 键为正）
+        float verticalInput = Input.GetAxis("Vertical"); // 获取垂直方向的输入
 
         // 如果有体力，允许玩家移动
         if (stamina > 0 && (Mathf.Abs(horizontalInput) > 0 || Mathf.Abs(verticalInput) > 0))
@@ -37,11 +39,17 @@ public class PlayerMovement : MonoBehaviour
 
             // 消耗体力
             DrainStamina(Time.deltaTime * staminaDrainRate);
+
+            // 重置恢复计时器
+            recoveryTimer = 0f;
         }
         else
         {
             // 停止主角移动
             playerRigidbody.linearVelocity = Vector2.zero;
+
+            // 恢复体力
+            RecoverStamina(Time.deltaTime);
         }
 
         // 限制主角的活动范围（相对于仓鼠球中心）
@@ -54,12 +62,6 @@ public class PlayerMovement : MonoBehaviour
 
         // 推动仓鼠球
         PushCircle(horizontalInput);
-
-        // 体力恢复（当玩家不按键时）
-        if (Mathf.Abs(horizontalInput) < 0.1f && Mathf.Abs(verticalInput) < 0.1f)
-        {
-            RecoverStamina(Time.deltaTime * staminaRecoveryRate);
-        }
     }
 
     private void PushCircle(float horizontalInput)
@@ -85,11 +87,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void RecoverStamina(float amount)
+    private void RecoverStamina(float deltaTime)
     {
+        // 更新恢复计时器
+        recoveryTimer += deltaTime;
+
+        // 计算恢复速率（分段逻辑）
+        float recoveryRate = recoveryTimer <= 3f ? slowRecoveryRate : fastRecoveryRate;
+
         // 恢复体力
         float oldStamina = stamina;
-        stamina = Mathf.Min(maxStamina, stamina + amount);
+        stamina = Mathf.Min(maxStamina, stamina + recoveryRate * deltaTime);
 
         // 如果体力有变化，打印信息
         if (stamina != oldStamina)
