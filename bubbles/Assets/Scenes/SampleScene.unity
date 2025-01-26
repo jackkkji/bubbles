@@ -591,10 +591,10 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 100
+  m_UseAutoMass: 1
+  m_Mass: 10
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -665,8 +665,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa15e699bfb691647b9d622e75ed8b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 1142215632}
-  speed: 5
+  circleTransform: {fileID: 1457565216}
+  circleRigidbody: {fileID: 1457565214}
+  moveSpeed: 5
+  ballPushForce: 10
+  maxDistanceFromCenter: 1.5
 --- !u!1 &1457565211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1090,7 @@ GameObject:
   - component: {fileID: 2020687003}
   - component: {fileID: 2020687002}
   - component: {fileID: 2020687001}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bounce Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1221,7 +1224,7 @@ GameObject:
   - component: {fileID: 2067126004}
   - component: {fileID: 2067126003}
   - component: {fileID: 2067126002}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1238,7 +1241,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5ce32db425909c949bd8fed079d7792e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
