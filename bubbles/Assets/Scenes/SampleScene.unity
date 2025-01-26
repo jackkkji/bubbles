@@ -224,8 +224,8 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 34
-  orthographic: 1
+  field of view: 104
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -670,7 +670,7 @@ MonoBehaviour:
   moveSpeed: 5
   ballPushForce: 10
   maxDistanceFromCenter: 1.5
-  maxStamina: 100
+  maxStamina: 50
   stamina: 0
   staminaDrainRate: 5
   staminaRecoveryRate: 3
@@ -772,7 +772,7 @@ Rigidbody2D:
   m_Mass: 10
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 6200000, guid: 4d631d8c4ea23b3498af0d4d126fb236, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
