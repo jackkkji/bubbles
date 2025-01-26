@@ -1343,7 +1343,8 @@ MonoBehaviour:
   maxStamina: 50
   stamina: 0
   staminaDrainRate: 5
-  staminaRecoveryRate: 3
+  slowRecoveryRate: 5
+  fastRecoveryRate: 30
 --- !u!1 &1372049343
 GameObject:
   m_ObjectHideFlags: 0
